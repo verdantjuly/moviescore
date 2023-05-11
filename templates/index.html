@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+​
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <title>Movie Score:Mini Project</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="static/style.css">
+</head>
+​
+<body>
+  <div class="backmovie"><iframe src="https://www.youtube.com/embed/rrGMENN1iaY?controls=0&autoplay=1&mute=1&loop=1"
+      height="100%" width="100%" frameborder="0" allowTransparency="true"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe></div>
+  <div class="mytitle">
+    <h1>무비 스코어:미니 프로젝트</h1>
+    <P>무비 스코어에서 영화를 추천하고 확인해 보세요.</P>
+    <div class="btnbox"><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#interfacemodal"
+        onclick="createEvents()">영화 추천하기</button>
+      <button type="button" class="btn btn-outline-success" onclick="location.href='#cards-box'">추천 영화목록</button>
+    </div>
+​
+  </div>
+​
+  <!-- document list -->
+  <div class="mycards mb-3">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+    </div>
+  </div>
+​
+  <!-- create modal -->
+  <div class="modal fade" id="interfacemodal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">영화 추천하기</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="form-floating mb-3">
+              <input id="nickname" type="text" class="form-control" placeholder="-">
+              <label>닉네임</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input id="password" type="password" class="form-control" placeholder="-">
+              <label>암호</label>
+              <span class="urldesc">암호는 최소 8자 이상 16자 이하로 <b>영문, 숫자, 특수문자</b>를 최소 한 가지씩 조합하여 입력해 주세요.</span>
+            </div>
+            <div class="form-floating mb-3">
+              <input id="url" type="text" class="form-control" placeholder="-">
+              <label>다음 영화URL</label>
+              <span class="urldesc"><a href="https://movie.daum.net/ranking/reservation" target="_blank">여기</a>를 클릭하시면
+                다음 영화로
+                이동합니다.</span>
+            </div>
+            <div class="form-floating mb-3">
+              <select class="form-select" id="starPoint">
+                <option selected disabled>선택</option>
+                <option value="5">⭑⭑⭑⭑⭑</option>
+                <option value="4">⭑⭑⭑⭑</option>
+                <option value="3">⭑⭑⭑</option>
+                <option value="2">⭑⭑</option>
+                <option value="1">⭑</option>
+              </select>
+              <label for="starPoint">별점을 선택해 주세요.</label>
+            </div>
+​
+            <div class="form-floating">
+              <textarea id="comment" class="form-control" placeholder="-" style="height: 100px"></textarea>
+              <label for="floatingTextarea2">코멘트</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="button" class="btn btn-primary" id="createBtn">등록</button>
+          <button type="button" class="btn btn-primary" id="editBtn">수정</button>
+        </div>
+      </div>
+    </div>
+  </div>
+​
+  <!-- password modal -->
+  <div class="modal fade" id="passwordmodal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">게시물의 암호를 입력해 주세요.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input id="Authpassword" type="password" class="form-control" placeholder="-">
+            <label>암호</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="button" class="btn btn-primary" id="editEventBtn">인증</button>
+          <button type="button" class="btn btn-primary" id="delEventBtn">인증</button>
+        </div>
+      </div>
+    </div>
+  </div>
+​
+  <!-- javascript -->
+  <script src="static/main.js"></script>
+</body>
+​
+</html> 
